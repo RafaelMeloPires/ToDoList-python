@@ -1,0 +1,83 @@
+/* Configuração Geral da Página */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Altura total da tela */
+    margin: 0;
+}
+
+/* O "Cartão" branco onde fica a lista */
+.container {
+    background-color: white;
+    width: 100%;
+    max-width: 400px; /* Largura máxima */
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+/* Estilo do Formulário (Input + Botão lado a lado) */
+form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    flex-grow: 1; /* Ocupa o espaço que sobrar */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+button {
+    background-color: #28a745; /* Verde */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+/* Estilo da Lista */
+ul {
+    list-style: none; /* Remove as bolinhas */
+    padding: 0;
+}
+
+li {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between; /* Texto na esq, botão na dir */
+    align-items: center;
+}
+
+/* Botão de Deletar */
+.btn-delete {
+    color: #dc3545;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 0 5px;
+}
+
+.btn-delete:hover {
+    color: #a71d2a;
+}

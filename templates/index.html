@@ -2,29 +2,32 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minha To-Do List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Lista de Tarefas</h1>
 
-    <form action="/adicionar" method="POST">
-        <input type="text" name="tarefa" placeholder="Digite uma nova tarefa">
-        <button type="submit">Adicionar</button>
-    </form>
+    <div class="container">
+        <h1>Minha Lista 📝</h1>
 
-    <hr>
+        <form action="/adicionar" method="POST">
+            <input type="text" name="tarefa" placeholder="O que vamos fazer hoje?" required>
+            <button type="submit">Add</button>
+        </form>
 
-    <ul>
-        {% for item in lista_de_tarefas %}
-            <li>
-                {{ item }} 
-                <a href="/deletar/{{ loop.index0 }}" style="color: red; text-decoration: none; margin-left: 10px;">
-                    [X]
-                </a>
-            </li>
-        {% else %}
-            <p>Nenhuma tarefa por enquanto.</p>
-        {% endfor %}
-    </ul>
+        <ul>
+            {% for item in lista_de_tarefas %}
+                <li>
+                    <span>{{ item }}</span>
+                    <a href="/deletar/{{ loop.index0 }}" class="btn-delete" title="Deletar">
+                        &times; </a>
+                </li>
+            {% else %}
+                <p style="text-align: center; color: #888;">Nenhuma tarefa pendente! 🎉</p>
+            {% endfor %}
+        </ul>
+    </div>
+
 </body>
 </html>
