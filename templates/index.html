@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Minha To-Do List</title>
+</head>
+<body>
+    <h1>Lista de Tarefas</h1>
+
+    <form action="/adicionar" method="POST">
+        <input type="text" name="tarefa" placeholder="Digite uma nova tarefa">
+        <button type="submit">Adicionar</button>
+    </form>
+
+    <hr>
+
+    <ul>
+        {% for item in lista_de_tarefas %}
+            <li>{{ item }}</li>
+        {% else %}
+            <p>Nenhuma tarefa por enquanto.</p>
+        {% endfor %}
+    </ul>
+</body>
+</html>
