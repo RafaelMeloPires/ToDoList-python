@@ -23,6 +23,13 @@ def adicionar():
     # Volta para a página inicial
     return redirect('/')
 
+@app.route('/deletar/<int:indice>')
+def deletar(indice):
+    # Verifica se o índice existe para não dar erro
+    if 0 <= indice < len(tarefas):
+        tarefas.pop(indice)  # Remove o item naquela posição
+        
+    return redirect('/')
 
 if __name__ == '__main__':
     app.run(debug=True)

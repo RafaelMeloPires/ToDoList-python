@@ -16,7 +16,12 @@
 
     <ul>
         {% for item in lista_de_tarefas %}
-            <li>{{ item }}</li>
+            <li>
+                {{ item }} 
+                <a href="/deletar/{{ loop.index0 }}" style="color: red; text-decoration: none; margin-left: 10px;">
+                    [X]
+                </a>
+            </li>
         {% else %}
             <p>Nenhuma tarefa por enquanto.</p>
         {% endfor %}
