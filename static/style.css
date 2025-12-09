@@ -1,83 +1,114 @@
-/* Configuração Geral da Página */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f2f5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Altura total da tela */
+/* Zera margens do navegador */
+* {
+    box-sizing: border-box;
     margin: 0;
-}
-
-/* O "Cartão" branco onde fica a lista */
-.container {
-    background-color: white;
-    width: 100%;
-    max-width: 400px; /* Largura máxima */
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 1.5rem;
-}
-/* Estilo do Formulário (Input + Botão lado a lado) */
-form {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-input[type="text"] {
-    flex-grow: 1; /* Ocupa o espaço que sobrar */
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    outline: none;
-}
-
-button {
-    background-color: #28a745; /* Verde */
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s;
-}
-
-button:hover {
-    background-color: #218838;
-}
-
-/* Estilo da Lista */
-ul {
-    list-style: none; /* Remove as bolinhas */
     padding: 0;
 }
 
-li {
-    background: #fff;
-    border-bottom: 1px solid #eee;
-    padding: 10px;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh; /* Altura total da tela */
+    overflow: hidden; /* Evita barra de rolagem na página inteira */
+}
+
+/* O GRANDE CONTAINER QUE SEGURA OS DOIS LADOS */
+.layout {
+    display: flex; /* Coloca um ao lado do outro */
+    height: 100%;
+    width: 100%;
+}
+
+/* --- LADO ESQUERDO (SIDEBAR) --- */
+.sidebar {
+    width: 350px; /* Largura fixa da barra lateral */
+    background-color: #2c3e50; /* Azul escuro */
+    color: white;
     display: flex;
-    justify-content: space-between; /* Texto na esq, botão na dir */
+    flex-direction: column;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar h2 {
+    padding: 20px;
+    background-color: #34495e; /* Um pouco mais claro que o fundo */
+    text-align: center;
+    border-bottom: 1px solid #1abc9c;
+}
+
+.lista-container {
+    flex-grow: 1;
+    overflow-y: auto; /* Se a lista for grande, cria barra de rolagem só aqui */
+    padding: 10px;
+}
+
+/* Estilo da Lista na Sidebar */
+ul { list-style: none; }
+
+li {
+    background: rgba(255, 255, 255, 0.1); /* Fundo semi-transparente */
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
     align-items: center;
+    gap: 10px;
+    color: #fff;
 }
 
-/* Botão de Deletar */
-.btn-delete {
-    color: #dc3545;
-    text-decoration: none;
+li.concluida { opacity: 0.6; }
+li.concluida .texto-tarefa { text-decoration: line-through; }
+
+.texto-tarefa { flex-grow: 1; word-break: break-word; }
+
+.btn-check { text-decoration: none; color: #2ecc71; font-size: 1.2rem; }
+.btn-delete { text-decoration: none; color: #e74c3c; font-size: 1.2rem; margin-left: 5px;}
+
+.aviso-vazio { text-align: center; margin-top: 20px; color: #95a5a6; }
+
+/* --- LADO DIREITO (CONTEÚDO PRINCIPAL) --- */
+.main-content {
+    flex-grow: 1; /* Ocupa todo o resto do espaço */
+    background-color: #ecf0f1; /* Cinza bem clarinho */
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+}
+
+/* O cartão do formulário */
+.form-card {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.form-card h1 { color: #333; margin-bottom: 20px; }
+
+form { display: flex; gap: 10px; }
+
+input[type="text"] {
+    flex-grow: 1;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+}
+
+input[type="text"]:focus { border-color: #2c3e50; }
+
+button {
+    padding: 12px 20px;
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
     font-weight: bold;
-    font-size: 1.2rem;
-    padding: 0 5px;
+    font-size: 1rem;
 }
 
-.btn-delete:hover {
-    color: #a71d2a;
-}
+button:hover { background-color: #34495e; }

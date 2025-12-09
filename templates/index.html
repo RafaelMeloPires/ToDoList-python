@@ -8,25 +8,39 @@
 </head>
 <body>
 
-    <div class="container">
-        <h1>Minha Lista 📝</h1>
+    <div class="layout">
+        
+        <div class="sidebar">
+            <h2>Tarefas 📋</h2>
+            <div class="lista-container">
+                <ul>
+                    {% for item in lista_de_tarefas %}
+                        <li class="{{ 'concluida' if item.feita else '' }}">
+                            <a href="/check/{{ loop.index0 }}" class="btn-check">
+                                {% if item.feita %}☑{% else %}☐{% endif %}
+                            </a>
+                            
+                            <span class="texto-tarefa">{{ item.texto }}</span>
 
-        <form action="/adicionar" method="POST">
-            <input type="text" name="tarefa" placeholder="O que vamos fazer hoje?" required>
-            <button type="submit">Add</button>
-        </form>
+                            <a href="/deletar/{{ loop.index0 }}" class="btn-delete">&times;</a>
+                        </li>
+                    {% else %}
+                        <p class="aviso-vazio">Sua lista está vazia.</p>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
 
-        <ul>
-            {% for item in lista_de_tarefas %}
-                <li>
-                    <span>{{ item }}</span>
-                    <a href="/deletar/{{ loop.index0 }}" class="btn-delete" title="Deletar">
-                        &times; </a>
-                </li>
-            {% else %}
-                <p style="text-align: center; color: #888;">Nenhuma tarefa pendente! 🎉</p>
-            {% endfor %}
-        </ul>
+        <div class="main-content">
+            <div class="form-card">
+                <h1>O que vamos fazer?</h1>
+                <form action="/adicionar" method="POST">
+                    <input type="text" name="tarefa" placeholder="Digite uma nova tarefa..." required autofocus>
+                    <button type="submit">Adicionar</button>
+                </form>
+            </div>
+        </div>
+
     </div>
 
 </body>

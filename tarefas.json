@@ -1,1 +1,14 @@
-[]
+[
+    {
+        "texto": "estudar",
+        "feita": true
+    },
+    {
+        "texto": "criar ",
+        "feita": true
+    },
+    {
+        "texto": "curriculo",
+        "feita": true
+    }
+]

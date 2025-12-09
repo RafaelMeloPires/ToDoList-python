@@ -27,10 +27,6 @@ def salvar_tarefas(lista):
         json.dump(lista, arquivo, indent=4)
 
 
-# Lista de tarefas (temporária, na memória)
-tarefas = []
-
-
 @app.route('/')
 def index():
     tarefas = carregar_tarefas()
@@ -41,23 +37,36 @@ def index():
 @app.route('/adicionar', methods=['POST'])
 def adicionar():
     # Pega o que foi digitado no formulário
-    nova_tarefa = request.form.get('tarefa')
-
-    if nova_tarefa:
+    texto_tarefa = request.form.get('tarefa')
+    if texto_tarefa:
         # 1. Carrega a lista atual
         tarefas = carregar_tarefas()
-        # 2. Adiciona o novo item
+        # AGORA SALVAMOS UM DICIONÁRIO, NÃO SÓ TEXTO
+        nova_tarefa = {
+            "texto": texto_tarefa,
+            "feita": False  # Começa sempre como não feita
+        }
         tarefas.append(nova_tarefa)
-        # 3. Salva no arquivo imediatamente
         salvar_tarefas(tarefas)
 
     # Volta para a página inicial
     return redirect('/')
 
+# NOVA ROTA: Marcar como feita/não feita
+
+
+@app.route('/check/<int:indice>')
+def check(indice):
+    tarefas = carregar_tarefas()
+    if 0 <= indice < len(tarefas):
+        # Inverte o status (se era True vira False, e vice-versa)
+        tarefas[indice]['feita'] = not tarefas[indice]['feita']
+        salvar_tarefas(tarefas)
+    return redirect('/')
+
 
 @app.route('/deletar/<int:indice>')
 def deletar(indice):
-    # Verifica se o índice existe para não dar erro
     # 1. Carrega a lista atual
     tarefas = carregar_tarefas()
 
